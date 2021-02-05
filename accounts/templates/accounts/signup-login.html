@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+	{% load staticfiles %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'styles-user.css' %}">
+
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+	<title>Sign-in/Sign-up Form</title>
+</head>
+
+<body>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form method="POST" action="{% url 'signup' %}">
+				{% csrf_token %}
+				{% if error %}
+				{{error}}
+				<br>
+				<br>
+				{% endif %}
+				<h1>Create Account</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-instagram"></i></a>
+					<a href="#" class="social"><i class="fab fa-twitter"></i></a>
+				</div>
+				<span>or use your email for Sign-Up</span>
+				<input type="text" placeholder=" First Name" name="first-name"/>
+				<input type="text" placeholder=" Last Name"name="last-name" />
+				<input type="text" placeholder=" Username" name="username"/>
+				<input type="email" placeholder="Email" name="email"/>
+				<input type="password" placeholder="Password" name="password1" />
+				<input type="password" placeholder=" Confirm Your Password" name="password2" />
+				<button type="submit" style="margin-top : .8rem">Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form method ="POST" action="{% url 'login' %}">
+				{% csrf_token %}
+				{% if error %}
+				{{error}}
+				<br>
+				<br>
+				{% endif %}
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-instagram"></i></a>
+					<a href="#" class="social"><i class="fab fa-twitter"></i></a>
+				</div>
+				<span>or use your Existing Account</span>
+				<input type="text" placeholder="username" name="username" />
+				<input type="password" placeholder="Password" name="password"/>
+				<a href="#">Forgot your password?</a>
+				<button type="submit">Log In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome!</h1>
+					<p>To Use our website please login</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello Learner!</h1>
+					<p>Enter your personal details and get started...</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'js-user.js' %}" charset="utf-8"></script>
+</body>
+
+</html>
